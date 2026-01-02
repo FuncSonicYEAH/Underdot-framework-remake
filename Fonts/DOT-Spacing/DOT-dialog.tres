@@ -1,0 +1,8 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://yndl1wdamjy7"]
+
+[ext_resource type="FontFile" uid="uid://cqsy7jk16syne" path="res://Fonts/speechbubble.ttf" id="1_u773f"]
+
+[resource]
+base_font = ExtResource("1_u773f")
+spacing_glyph = 1
+spacing_bottom = 4

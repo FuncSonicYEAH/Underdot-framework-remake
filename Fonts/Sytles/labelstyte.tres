@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://celcj5n0w6j5b"]
+
+[ext_resource type="FontFile" uid="uid://dm4bqw5xv1ryg" path="res://Fonts/DTM-Sans.otf" id="1_rtdhd"]
+
+[resource]
+paragraph_spacing = -10.0
+font = ExtResource("1_rtdhd")
+font_size = 27

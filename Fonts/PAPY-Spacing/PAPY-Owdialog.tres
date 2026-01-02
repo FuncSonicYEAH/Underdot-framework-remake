@@ -1,0 +1,8 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://dmaupydb08rau"]
+
+[ext_resource type="FontFile" uid="uid://chp325kjkce3g" path="res://Fonts/papyrus.ttf" id="1_0v173"]
+
+[resource]
+base_font = ExtResource("1_0v173")
+spacing_glyph = 2
+spacing_bottom = 4

@@ -1,0 +1,8 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://bug5lrd54yj13"]
+
+[ext_resource type="FontFile" uid="uid://dwokbsj83b73v" path="res://Fonts/DTM-Mono.otf" id="1_lnnu6"]
+
+[resource]
+base_font = ExtResource("1_lnnu6")
+spacing_top = -4
+spacing_bottom = -2

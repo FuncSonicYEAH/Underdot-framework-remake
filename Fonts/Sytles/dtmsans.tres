@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c7x6g5jporff8"]
+
+[ext_resource type="FontFile" uid="uid://dm4bqw5xv1ryg" path="res://Fonts/DTM-Sans.otf" id="1_sfxd8"]
+
+[resource]
+line_spacing = 5.0
+font = ExtResource("1_sfxd8")
+font_size = 27
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)

@@ -1,0 +1,7 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://be6q0w4x55cmd"]
+
+[ext_resource type="FontFile" uid="uid://dwokbsj83b73v" path="res://Fonts/DTM-Mono.otf" id="1_o5ump"]
+
+[resource]
+base_font = ExtResource("1_o5ump")
+spacing_bottom = -3

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bey4yyhh4s8ya"]
+
+[ext_resource type="Script" uid="uid://cujshv8jtaolk" path="res://System/Test.cs" id="1_tgiss"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_tgiss")

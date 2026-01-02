@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://b1mfr2s2oeq2a"]
+
+[ext_resource type="FontFile" uid="uid://dm4bqw5xv1ryg" path="res://Fonts/DTM-Sans.otf" id="1_dmqs4"]
+
+[resource]
+base_font = ExtResource("1_dmqs4")

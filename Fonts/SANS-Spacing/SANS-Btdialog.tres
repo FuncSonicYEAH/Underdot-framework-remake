@@ -1,0 +1,8 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://cx4whucsd6mnw"]
+
+[ext_resource type="FontFile" uid="uid://hl7gsygsj8sm" path="res://Fonts/sans.ttf" id="1_1ejbt"]
+
+[resource]
+base_font = ExtResource("1_1ejbt")
+spacing_glyph = 2
+spacing_bottom = 2
