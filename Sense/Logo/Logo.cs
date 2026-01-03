@@ -7,6 +7,8 @@ public partial class Logo : Control
 	Dictionary<string,MenuState> States = new Dictionary<string,MenuState>{ };
 	MenuState CurrentState = null;
 
+	public event Action<string> StateChanged;
+
 	public override void _Ready()
 	{
 		base._Ready();
@@ -17,11 +19,12 @@ public partial class Logo : Control
 		foreach (var state in States.Values)
 		{
 			state.Visible = false;
+			state.ChangeRequested += ChangeState;
 			state.ProcessMode = Node.ProcessModeEnum.Disabled;
 		}
 
 		GD.Print("States: ", States);
-		ChangeState("MainMenu");
+		ChangeState("Logo");
 
 	}
 
@@ -37,9 +40,14 @@ public partial class Logo : Control
 		if (States.TryGetValue(name, out MenuState newState))
 		{
 			CurrentState = newState;
+
 			CurrentState.ProcessMode = Node.ProcessModeEnum.Inherit;
 			CurrentState.Visible = true;
 			CurrentState.Enter();
+
+			StateChanged?.Invoke(name);
+
+			GD.Print("Changed state to: ", name);
 		}
 		else
 		{

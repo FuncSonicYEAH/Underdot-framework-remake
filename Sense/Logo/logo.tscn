@@ -1,14 +1,55 @@
-[gd_scene load_steps=6 format=3 uid="uid://12onyf1s8jfg"]
+[gd_scene load_steps=12 format=3 uid="uid://12onyf1s8jfg"]
 
 [ext_resource type="Script" uid="uid://6fg1xjnf6obp" path="res://Sense/Logo/Logo.cs" id="1_1cnd7"]
 [ext_resource type="Script" uid="uid://cll3bryvon52p" path="res://Sense/Logo/MenuState.cs" id="2_ah6wx"]
+[ext_resource type="Script" uid="uid://cqk5wi82jxwif" path="res://Sense/Logo/Logo/LogoScript.cs" id="2_j2cx2"]
 [ext_resource type="FontFile" uid="uid://c4egpres5rovo" path="res://Fonts/ui.ttf" id="3_blblf"]
 [ext_resource type="FontVariation" uid="uid://b1mfr2s2oeq2a" path="res://Fonts/DTM-Spacing/DTM-Intro.tres" id="4_0jnck"]
+[ext_resource type="Script" uid="uid://cublrmxmjwapv" path="res://Sense/Logo/Menu/MenuButton.cs" id="5_v6x2q"]
+[ext_resource type="LabelSettings" uid="uid://66pqx5pbgj2k" path="res://Fonts/Sytles/menu.tres" id="6_j2cx2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7evgp"]
 paragraph_spacing = -5.0
 font = ExtResource("3_blblf")
 font_color = Color(0.50163716, 0.50163716, 0.5016371, 1)
+
+[sub_resource type="Animation" id="Animation_v6x2q"]
+resource_name = "tips"
+length = 2.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.2, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j2cx2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_71l6h"]
+_data = {
+&"RESET": SubResource("Animation_j2cx2"),
+&"tips": SubResource("Animation_v6x2q")
+}
 
 [node name="Logo" type="Control"]
 layout_mode = 3
@@ -26,11 +67,10 @@ offset_bottom = 480.0
 color = Color(0, 0, 0, 1)
 
 [node name="MainLogo" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 480.0
-script = ExtResource("2_ah6wx")
+script = ExtResource("2_j2cx2")
 metadata/_custom_type_script = "uid://cll3bryvon52p"
 
 [node name="Label" type="Label" parent="MainLogo"]
@@ -49,7 +89,13 @@ grow_vertical = 0
 text = "[ PRESS ENTER OR Z ]"
 label_settings = SubResource("LabelSettings_7evgp")
 
+[node name="Animation" type="AnimationPlayer" parent="MainLogo"]
+libraries = {
+&"": SubResource("AnimationLibrary_71l6h")
+}
+
 [node name="MainMenu" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 480.0
@@ -64,9 +110,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -168.0
-offset_top = -195.5
+offset_top = -201.5
 offset_right = 168.0
-offset_bottom = 97.5
+offset_bottom = 91.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.50319004, 0.5031901, 0.50319004, 1)
@@ -91,3 +137,21 @@ text = "UNDERTALE BY TOBY FOX 2015 - 2026
 UNDERDOT FRAMEWORK BY UNKNOWN 2025 - 2026"
 label_settings = SubResource("LabelSettings_7evgp")
 horizontal_alignment = 1
+
+[node name="MenuButton" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 346.0
+offset_right = 348.0
+offset_bottom = 429.0
+script = ExtResource("5_v6x2q")
+
+[node name="Label" type="Label" parent="MainMenu/MenuButton"]
+layout_mode = 2
+text = "intro_begin"
+label_settings = ExtResource("6_j2cx2")
+
+[node name="Label2" type="Label" parent="MainMenu/MenuButton"]
+layout_mode = 2
+text = "intro_settings"
+label_settings = ExtResource("6_j2cx2")

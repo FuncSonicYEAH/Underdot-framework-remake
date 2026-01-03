@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://66pqx5pbgj2k"]
+
+[ext_resource type="FontVariation" uid="uid://b1mfr2s2oeq2a" path="res://Fonts/DTM-Spacing/DTM-Intro.tres" id="1_lnqiu"]
+
+[resource]
+font = ExtResource("1_lnqiu")
+font_size = 27
