@@ -1,0 +1,43 @@
+,en,zh_CN
+Warning,"This game has some effect and flash lights
+
+Be careful if you are play this...
+
+PRESS [Z] OR [ENTER] TO CONTINUE","此游戏含有一些比较亮的特效和闪光
+
+游玩过程中请务必小心
+
+按 [Z] 或 [ENTER] 键继续"
+menu_item,ITEM,物品
+menu_stat,STAT,状态
+menu_call,CALL,电话
+setting_window,WINDOW SIZE,窗口尺寸                 
+setting_fullscreen,FULL SCREEN,全屏
+setting_lang,LANGUAGE,语言
+setting_unable,Unvalable,不可用
+setting_true,OPEN,开启
+setting_false,CLOSE,关闭
+setting_title,GAME SETTINGS\n,游戏设置\n
+intro_introduction," --- Instruction --- 
+
+[Z or ENTER] – Confirm
+[X or SHIFT] – Cancel
+[C or CTRL] - Menu (In-game)
+[F4] – Fullscreen
+[Hold ESC] – Quit
+When HP is 0, you lose.","--- 游戏教学 ---
+
+[Z 或 ENTER] – 确认
+[X 或 SHIFT] – 取消
+[C 或 CTRL] – 菜单(游戏内)
+[F4] – 全屏
+[长按ESC] – 退出
+当HP为0的时候，你就输了"
+intro_begin,Begin Game,开始游戏
+intro_settings,Settings,游戏设置\n
+intro_reset,RESET,重置
+intro_continue,Continue,继续
+saving_dtm,* Determination,* 决心
+saving_save,Save,保存
+saving_return,Return,返回
+saving_ok,File Saved,存档已保存
