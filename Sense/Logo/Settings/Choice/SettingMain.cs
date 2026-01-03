@@ -2,9 +2,9 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class MenuButton : VBoxContainer
+public partial class SettingMain : VBoxContainer
 {
-	private int Choice = 0;
+	public int Choice = 0;
 	private List<Color> Colors = new List<Color>
 	{
 		new Color(1,1,1), // White
@@ -36,9 +36,10 @@ public partial class MenuButton : VBoxContainer
 				Choice = GetChildCount() - 1;
 			}
 		}
-		else if (@event.IsActionPressed("enter"))
+
+		if (@event.IsActionPressed("shift"))
 		{
-			SelectedOption();
+			GetParent<MenuSettings>().RequestChange("MainMenu");
 		}
 	}
 
@@ -61,22 +62,4 @@ public partial class MenuButton : VBoxContainer
 			}
 		}
 	}
-
-	private void SelectedOption()
-	{
-		switch (Choice)
-		{
-			case 0:
-				GD.Print("Start Game selected");
-				break;
-			case 1:
-				MenuState Parent = GetParent<MenuState>();
-				Parent.RequestChange("Settings");
-				break;
-			default:
-				GD.Print("Invalid selection");
-				break;
-		}
-	}
-
 }

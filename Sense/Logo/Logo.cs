@@ -15,6 +15,7 @@ public partial class Logo : Control
 
 		States["Logo"] = GetNode<MenuState>("MainLogo");
 		States["MainMenu"] = GetNode<MenuState>("MainMenu");
+		States["Settings"] = GetNode<MenuState>("Settings");
 
 		foreach (var state in States.Values)
 		{

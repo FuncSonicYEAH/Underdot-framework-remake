@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://12onyf1s8jfg"]
+[gd_scene load_steps=16 format=3 uid="uid://12onyf1s8jfg"]
 
 [ext_resource type="Script" uid="uid://6fg1xjnf6obp" path="res://Sense/Logo/Logo.cs" id="1_1cnd7"]
 [ext_resource type="Script" uid="uid://cll3bryvon52p" path="res://Sense/Logo/MenuState.cs" id="2_ah6wx"]
@@ -7,11 +7,30 @@
 [ext_resource type="FontVariation" uid="uid://b1mfr2s2oeq2a" path="res://Fonts/DTM-Spacing/DTM-Intro.tres" id="4_0jnck"]
 [ext_resource type="Script" uid="uid://cublrmxmjwapv" path="res://Sense/Logo/Menu/MenuButton.cs" id="5_v6x2q"]
 [ext_resource type="LabelSettings" uid="uid://66pqx5pbgj2k" path="res://Fonts/Sytles/menu.tres" id="6_j2cx2"]
+[ext_resource type="Script" uid="uid://dnut5h6nxnug5" path="res://Sense/Logo/Settings/MenuSettings.cs" id="8_ixxe6"]
+[ext_resource type="Script" uid="uid://d0o4fxuerqpnc" path="res://Sense/Logo/Settings/Choice/Language.cs" id="9_ixxe6"]
+[ext_resource type="Script" uid="uid://beljbu8vgwl4d" path="res://Sense/Logo/Settings/Choice/SettingMain.cs" id="9_xk8j2"]
+[ext_resource type="Script" uid="uid://8snfcygbw078" path="res://Sense/Logo/Settings/Choice/Size.cs" id="10_xk8j2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7evgp"]
 paragraph_spacing = -5.0
 font = ExtResource("3_blblf")
 font_color = Color(0.50163716, 0.50163716, 0.5016371, 1)
+
+[sub_resource type="Animation" id="Animation_j2cx2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_v6x2q"]
 resource_name = "tips"
@@ -28,21 +47,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_j2cx2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Label:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_71l6h"]
@@ -67,6 +71,7 @@ offset_bottom = 480.0
 color = Color(0, 0, 0, 1)
 
 [node name="MainLogo" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 480.0
@@ -155,3 +160,76 @@ label_settings = ExtResource("6_j2cx2")
 layout_mode = 2
 text = "intro_settings"
 label_settings = ExtResource("6_j2cx2")
+
+[node name="Settings" type="Control" parent="."]
+process_mode = 4
+visible = false
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 479.0
+script = ExtResource("8_ixxe6")
+metadata/_custom_type_script = "uid://cll3bryvon52p"
+
+[node name="Label" type="Label" parent="Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -187.5
+offset_right = 89.0
+offset_bottom = -114.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "setting_title"
+label_settings = ExtResource("6_j2cx2")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.75
+offset_top = -138.0
+offset_right = 166.75
+offset_bottom = 194.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_xk8j2")
+
+[node name="Language" type="Label" parent="Settings/VBoxContainer"]
+layout_mode = 2
+text = "setting_lang"
+label_settings = ExtResource("6_j2cx2")
+script = ExtResource("9_ixxe6")
+
+[node name="Value" type="Label" parent="Settings/VBoxContainer/Language"]
+layout_mode = 0
+offset_left = 204.75
+offset_top = 0.5
+offset_right = 321.75
+offset_bottom = 35.0
+text = "Editing"
+label_settings = ExtResource("6_j2cx2")
+horizontal_alignment = 2
+
+[node name="Size" type="Label" parent="Settings/VBoxContainer"]
+layout_mode = 2
+text = "setting_window"
+label_settings = ExtResource("6_j2cx2")
+script = ExtResource("10_xk8j2")
+
+[node name="Value" type="Label" parent="Settings/VBoxContainer/Size"]
+layout_mode = 0
+offset_left = 204.75
+offset_top = 0.5
+offset_right = 321.75
+offset_bottom = 35.0
+text = "Editing"
+label_settings = ExtResource("6_j2cx2")
+horizontal_alignment = 2

@@ -6,7 +6,7 @@ public partial class MenuState : Control
 {
 	public event Action<string> ChangeRequested;
 
-    protected void RequestChange(string stateName)
+    public void RequestChange(string stateName)
     {
         ChangeRequested?.Invoke(stateName);
     }
