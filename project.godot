@@ -29,6 +29,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="UNDERDOT FRAMEWORK Cs"
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Trans/Tran.en.translation", "res://Trans/Tran.zh_CN.translation")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
