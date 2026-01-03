@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bey4yyhh4s8ya"]
+[gd_scene load_steps=4 format=3 uid="uid://bey4yyhh4s8ya"]
 
 [ext_resource type="Script" uid="uid://cujshv8jtaolk" path="res://System/Test.cs" id="1_tgiss"]
+[ext_resource type="Script" uid="uid://dg52mqeyw5yyh" path="res://Sense/Arena/Script/ArenaGroup.cs" id="2_4uduf"]
+[ext_resource type="Script" uid="uid://ddv6n3mri61nj" path="res://Sense/Arena/Script/ArenaExpandRect.cs" id="2_yt3tn"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_tgiss")
+
+[node name="ArenaGroup" type="Node2D" parent="."]
+script = ExtResource("2_4uduf")
+metadata/_custom_type_script = "uid://dg52mqeyw5yyh"
+
+[node name="ArenaExpandRect" type="Node2D" parent="ArenaGroup"]
+position = Vector2(118, 132)
+script = ExtResource("2_yt3tn")
+Size = Vector2(640, 480)
+metadata/_custom_type_script = "uid://ddv6n3mri61nj"
