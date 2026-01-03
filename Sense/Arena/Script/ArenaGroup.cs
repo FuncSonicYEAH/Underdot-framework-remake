@@ -99,8 +99,8 @@ public partial class ArenaGroup : Node2D
 
 		foreach (Node Child in GetChildren())
 		{
-            if (Child is not Arena arena)
-                continue;
+			if (Child is not Arena arena)
+				continue;
 
 			foreach (Rid item in CanvasItems)
 			{
