@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Setting="*res://System/Global/Setting.cs"
+Character="*res://System/Global/Character.cs"
 
 [display]
 
