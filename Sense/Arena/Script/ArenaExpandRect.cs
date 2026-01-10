@@ -3,37 +3,31 @@ using System;
 
 [Tool]
 [GlobalClass]
-
 public partial class ArenaExpandRect : ArenaExpand
 {
-	[Export]
-	public Vector2 Size = new Vector2(100, 100);
+	[Export] Vector2 Size = new Vector2(600, 400);
 
 	public override void DrawArena(Rid border_render_item, Rid border_culling_item, Rid mask_render_item, Rid mask_culling_item)
 	{
-		Rid borderRenderItem = border_render_item;
-		Rid maskRenderItem = mask_render_item;
+		Vector2 BorderSize = Size + new Vector2((float)BorderWeight * 2, (float)BorderWeight * 2);
+		Rect2 BorderRect = new Rect2(-BorderSize / 2, BorderSize);
+		RenderingServer.CanvasItemAddRect(border_render_item, BorderRect, BorderColor);
 
-		Vector2 borderSize = new Vector2((float)BorderWeight, (float)BorderWeight);
-		Rect2 borderRect = new Rect2(-(Size * 0.5f + borderSize), Size + borderSize * 2);
-		RenderingServer.CanvasItemAddRect(borderRenderItem, borderRect, BorderColor);
-
-		Rect2 contentRect = new Rect2(-Size * 0.5f, Size);
-		RenderingServer.CanvasItemAddRect(maskRenderItem, contentRect, BackgroundColor);
+		Rect2 ContentRect = new Rect2(-Size / 2, Size);
+		RenderingServer.CanvasItemAddRect(mask_render_item, ContentRect, BackgroundColor);
 	}
 
-	public bool IsInsideInArena(Vector2 pos)
+	public override void IsInsideArena(Vector2 position, out bool isInside)
 	{
-		Rect2 contentRect = new Rect2(-Size * 0.5f, Size - Vector2.One * new Vector2((float)BorderWeight, (float)BorderWeight));
-		return contentRect.HasPoint(pos);
+		Rect2 ContentRect = new Rect2(-Size / 2, Size);
+		isInside = ContentRect.HasPoint(position);
 	}
 
-	public Vector2 GetRecentPointInArena(Vector2 pos)
+	public override Vector2 GetRecentPointInsideArena(Vector2 position)
 	{
-		Vector2 half = Size * 0.5f;
-		Vector2 closestLocal = Vector2.Zero;
-		closestLocal.X = Mathf.Clamp(pos.X, -half.X, half.X);
-		closestLocal.Y = Mathf.Clamp(pos.Y, -half.Y, half.Y);
-		return closestLocal;
+		Rect2 ContentRect = new Rect2(-Size / 2, Size);
+		float clampedX = Mathf.Clamp(position.X, ContentRect.Position.X, ContentRect.Position.X + ContentRect.Size.X);
+		float clampedY = Mathf.Clamp(position.Y, ContentRect.Position.Y, ContentRect.Position.Y + ContentRect.Size.Y);
+		return new Vector2(clampedX, clampedY);
 	}
 }
