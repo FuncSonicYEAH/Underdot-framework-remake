@@ -58,42 +58,39 @@ public partial class TextTyper : RichTextLabel
             }
         }
 
+        else if (WaitAccumulator > 0f)
+        {
+            WaitAccumulator -= (float)delta;
+        }
+        
         else
         {
             TypingStart?.Invoke();
 
-            if (WaitAccumulator > 0f)
+            if (Input.IsActionJustPressed("shift") && !Skipped)
             {
-                WaitAccumulator -= (float)delta;
+                while (ProgressIndex < TyperText.Length)
+                    PrintText();
+                Skipped = true;
+            }
+            else if (Input.IsActionJustReleased("shift"))
+            {
+                Skipped = false;
             }
 
-            else
+            TimeAccumulator += (float)delta;
+            while (TimeAccumulator >= TypingSpeed && ProgressIndex < TyperText.Length)
             {
-                if (Input.IsActionJustPressed("shift") && !Skipped)
-                {
-                    while (ProgressIndex < TyperText.Length)
-                        PrintText();
-                    Skipped = true;
-                }
-                else if (Input.IsActionJustReleased("shift"))
-                {
-                    Skipped = false;
-                }
+                TimeAccumulator -= TypingSpeed;
+                PrintText();
+                GD.Print("Typing: " + ProgressIndex.ToString() + "/" + TyperText.Length.ToString());
+            }
 
-                TimeAccumulator += (float)delta;
-                while (TimeAccumulator >= TypingSpeed && ProgressIndex < TyperText.Length)
-                {
-                    TimeAccumulator -= TypingSpeed;
-                    PrintText();
-                    GD.Print("Typing: " + ProgressIndex.ToString() + "/" + TyperText.Length.ToString());
-                }
-
-                if (ProgressIndex >= TyperText.Length)
-                {
-                    TypingFinished?.Invoke();
-                    IsTyping = false;
-                    GD.Print("Typing complete.");
-                }
+            if (ProgressIndex >= TyperText.Length)
+            {
+                TypingFinished?.Invoke();
+                IsTyping = false;
+                GD.Print("Typing complete.");
             }
         }
     }
