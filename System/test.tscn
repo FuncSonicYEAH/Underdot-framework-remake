@@ -26,8 +26,9 @@ offset_bottom = 307.0
 theme_override_fonts/normal_font = ExtResource("4_nxyh8")
 theme_override_font_sizes/normal_font_size = 27
 bbcode_enabled = true
+text = "[color=#ff0000]这tm什么啊[/color]"
 fit_content = true
 scroll_active = false
 script = ExtResource("4_4nl3m")
-TyperText = "[canskip=true][color=#ff0000]这tm什么啊[/color][pause][clear]你想干什么啊啊啊啊啊[br]啊啊啊啊啊啊啊[pause][clear]好吧你赢了"
+TyperText = "[canskip=false][color=#ff0000]这tm什么啊[/color][pause][clear]你想干什么啊啊啊啊啊[br]啊啊啊啊啊啊啊[pause][clear]好吧你赢了"
 metadata/_custom_type_script = "uid://c2dyaw4af2lij"
