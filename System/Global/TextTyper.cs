@@ -29,7 +29,7 @@ public partial class TextTyper : RichTextLabel
     private bool IsTyping = true;
     private bool IsSkipping = false;
     private bool Paused = false;
-    private bool Skipped = false;
+    private bool CanSkip = false;
 
     public event Action TypingStart;
     public event Action TypingFinished;
@@ -68,7 +68,7 @@ public partial class TextTyper : RichTextLabel
         {
             TypingStart?.Invoke();
 
-            if (Input.IsActionJustPressed("shift") && !Skipped && !Paused)
+            if (Input.IsActionJustPressed("shift") && !Paused && CanSkip)
             {
                 int pauseIndex = TyperText.IndexOf("[pause]", ProgressIndex);
                 if (pauseIndex >= 0)
@@ -85,13 +85,14 @@ public partial class TextTyper : RichTextLabel
                         PrintText();
                     }
                 }
-                Skipped = true;
             }
 
+            /*
             else if (Input.IsActionJustReleased("shift") && !Paused)
             {
                 Skipped = false;
             }
+            */
 
             TimeAccumulator += (float)delta;
 
@@ -164,6 +165,14 @@ public partial class TextTyper : RichTextLabel
                 if (float.TryParse(values, out float newSpeed))
                 {
                     TypingSpeed = newSpeed;
+                    return true;
+                }
+                break;
+
+            case "canskip":
+                if (bool.TryParse(values, out bool can))
+                {
+                    CanSkip = can;
                     return true;
                 }
                 break;

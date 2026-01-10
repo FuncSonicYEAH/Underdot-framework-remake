@@ -29,5 +29,5 @@ bbcode_enabled = true
 fit_content = true
 scroll_active = false
 script = ExtResource("4_4nl3m")
-TyperText = "这tm什么啊[pause][clear]你想干什么啊啊啊啊啊[br]啊啊啊啊啊啊啊[pause][clear]好吧你赢了"
+TyperText = "这[color=#ff0000]tm什么啊[/color][pause][clear]你想干什么啊啊啊啊啊[br]啊啊啊啊啊啊啊[pause][clear]好吧你赢了"
 metadata/_custom_type_script = "uid://c2dyaw4af2lij"
