@@ -70,7 +70,7 @@ public partial class TextTyper : RichTextLabel
 
             if (Input.IsActionJustPressed("shift") && !Skipped && !Paused)
             {
-                int pauseIndex = TyperText.IndexOf("pause", ProgressIndex);
+                int pauseIndex = TyperText.IndexOf("[pause]", ProgressIndex);
                 if (pauseIndex >= 0)
                 {
                     while (ProgressIndex < pauseIndex)
