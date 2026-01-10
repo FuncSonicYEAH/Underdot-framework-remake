@@ -1,34 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://bey4yyhh4s8ya"]
+[gd_scene load_steps=4 format=3 uid="uid://bey4yyhh4s8ya"]
 
 [ext_resource type="Script" uid="uid://cujshv8jtaolk" path="res://System/Test.cs" id="1_tgiss"]
-[ext_resource type="Script" uid="uid://dg52mqeyw5yyh" path="res://Sense/Arena/Script/ArenaGroup.cs" id="2_4uduf"]
-[ext_resource type="Script" uid="uid://ddv6n3mri61nj" path="res://Sense/Arena/Script/ArenaExpandRect.cs" id="3_4uduf"]
 [ext_resource type="Script" uid="uid://c2dyaw4af2lij" path="res://System/Global/TextTyper.cs" id="4_4nl3m"]
 [ext_resource type="FontVariation" uid="uid://ctblywm7558o3" path="res://Fonts/DTM-Spacing/DTM-Normal.tres" id="4_nxyh8"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_tgiss")
 
-[node name="ArenaGroup" type="Node2D" parent="."]
-script = ExtResource("2_4uduf")
-metadata/_custom_type_script = "uid://dg52mqeyw5yyh"
-
-[node name="ArenaExpandRect" type="Node2D" parent="ArenaGroup"]
-position = Vector2(142, 144)
-script = ExtResource("3_4uduf")
-metadata/_custom_type_script = "uid://ddv6n3mri61nj"
-
 [node name="TextTyper" type="RichTextLabel" parent="."]
-offset_left = 142.0
-offset_top = 180.0
-offset_right = 485.0
-offset_bottom = 307.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 37.0
+offset_top = 107.0
+offset_right = 614.0
+offset_bottom = 384.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_nxyh8")
 theme_override_font_sizes/normal_font_size = 27
-bbcode_enabled = true
-text = "[color=#ff0000]这tm什么啊[/color]"
-fit_content = true
-scroll_active = false
 script = ExtResource("4_4nl3m")
-TyperText = "[canskip=false][color=#ff0000]这tm什么啊[/color][pause][clear]你想干什么啊啊啊啊啊[br]啊啊啊啊啊啊啊[pause][clear]好吧你赢了"
+TyperText = "[canskip=false]重写了一下打字机
+现在本up正在使用godot c#
+所以这个是用c#做的
+让我们看一下功能[clear]首先就是肯定要有的bbcode的支持了
+[color=#ffff00]字体颜色[/color]，[shake]字体特效[/shake]，[font_size=16]字体大小[/font_size]，[font=res://Fonts/SANS-Spacing/SANS-Owdialog.tres]字体切换[/font]"
 metadata/_custom_type_script = "uid://c2dyaw4af2lij"

@@ -20,7 +20,10 @@ public partial class TextTyper : RichTextLabel
 {
 
 	[Export(PropertyHint.MultilineText)] public string TyperText= "";
-	[Export] public float TypingSpeed = 0.075f; // Seconds per character
+	[Export] public float DefaultSpeed = 0.075f;
+	public float TypingSpeed = 0f; // Seconds per character
+
+
 
 	private int ProgressIndex = 0;
 	private float TimeAccumulator = 0f;
@@ -37,6 +40,7 @@ public partial class TextTyper : RichTextLabel
 	public override void _Ready()
 	{
 		base._Ready();
+		TypingSpeed = DefaultSpeed;
 		BbcodeEnabled = true;
 	}
 
@@ -177,7 +181,7 @@ public partial class TextTyper : RichTextLabel
 				break;
 			
 			case "/speed":
-				TypingSpeed = 0.075f;
+				TypingSpeed = DefaultSpeed;
 				return true;
 			
 			case "clear":
