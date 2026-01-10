@@ -54,10 +54,12 @@ public partial class SettingMain : VBoxContainer
 				if (Index == Choice)
 				{
 					label.Modulate = Colors[1]; // Highlighted color
+					label.ProcessMode = Node.ProcessModeEnum.Inherit; // Ensure processing is enabled
 				}
 				else
 				{
 					label.Modulate = Colors[0]; // Default color
+					label.ProcessMode = Node.ProcessModeEnum.Disabled; // Disable processing
 				}
 			}
 		}

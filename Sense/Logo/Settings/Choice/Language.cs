@@ -8,9 +8,16 @@ public partial class Language : Label
 	private static readonly string[] SupportedLanguages = { "en", "zh_CN" };
 	private static int currentLanguageIndex = 0;
 
+	public override void _Ready()
+	{
+		base._Ready();
+		// Initialize currentLanguageIndex based on Setting.CurrentLanguage
+		GetNode<Label>("Value").Text = "< " + Tr("Language") + " >";
+	}
+
 	public override void _Input(InputEvent @event)
 	{
-		if (Parent.Choice == 0 && @event is InputEventKey keyEvent && keyEvent.Pressed)
+		if (@event is InputEventKey keyEvent && keyEvent.Pressed)
 		{
 			if (@event.IsActionPressed("left"))
 			{

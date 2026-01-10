@@ -6,5 +6,7 @@ public partial class Test : Node2D
 	public override void _Ready()
 	{
 		base._Ready();
+        GetNode<Character>("/root/Character").Load(0);
+		GD.Print(Character.CharacterName);
 	}
 }
