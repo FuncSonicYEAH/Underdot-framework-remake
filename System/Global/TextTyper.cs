@@ -29,7 +29,7 @@ public partial class TextTyper : RichTextLabel
     private bool IsTyping = true;
     private bool IsSkipping = false;
     private bool Paused = false;
-    private bool CanSkip = false;
+    private bool CanSkip = true;
 
     public event Action TypingStart;
     public event Action TypingFinished;
