@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bey4yyhh4s8ya"]
+[gd_scene load_steps=6 format=3 uid="uid://bey4yyhh4s8ya"]
 
 [ext_resource type="Script" uid="uid://cujshv8jtaolk" path="res://System/Test.cs" id="1_tgiss"]
 [ext_resource type="Script" uid="uid://dg52mqeyw5yyh" path="res://Sense/Arena/Script/ArenaGroup.cs" id="2_4uduf"]
 [ext_resource type="Script" uid="uid://ddv6n3mri61nj" path="res://Sense/Arena/Script/ArenaExpandRect.cs" id="3_4uduf"]
 [ext_resource type="Script" uid="uid://c2dyaw4af2lij" path="res://System/Global/TextTyper.cs" id="4_4nl3m"]
+[ext_resource type="FontVariation" uid="uid://ctblywm7558o3" path="res://Fonts/DTM-Spacing/DTM-Normal.tres" id="4_nxyh8"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_tgiss")
@@ -22,16 +23,11 @@ offset_left = 142.0
 offset_top = 180.0
 offset_right = 485.0
 offset_bottom = 307.0
+theme_override_fonts/normal_font = ExtResource("4_nxyh8")
+theme_override_font_sizes/normal_font_size = 27
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
 script = ExtResource("4_4nl3m")
-TyperText = "这是一段文字
-[color=#ff0000]等待测试[/color]
-速度测试 [speed=0.5]很慢的...... [speed=0.02]快的......[/speed]
-暂停测试[pause]
-然后就没了...[pause]吗？
-还有还有还有
-1111111111111111
-1111111111111111[pause][destroy]"
+TyperText = "这tm什么啊[pause][clear]你想干什么啊啊啊啊啊[br]啊啊啊啊啊啊啊[pause][clear]好吧你赢了"
 metadata/_custom_type_script = "uid://c2dyaw4af2lij"
