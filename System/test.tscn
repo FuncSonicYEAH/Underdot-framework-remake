@@ -26,10 +26,12 @@ bbcode_enabled = true
 fit_content = true
 scroll_active = false
 script = ExtResource("4_4nl3m")
-TyperText = "这是一段文字[wait=1]
+TyperText = "这是一段文字
 [color=#ff0000]等待测试[/color]
 速度测试 [speed=0.5]很慢的...... [speed=0.02]快的......[/speed]
 暂停测试[pause]
-暂停+清除测试[pause][clear]
-暂停+摧毁测试[pause][destroy]"
+然后就没了...[pause]吗？
+还有还有还有
+1111111111111111
+1111111111111111[pause][destroy]"
 metadata/_custom_type_script = "uid://c2dyaw4af2lij"

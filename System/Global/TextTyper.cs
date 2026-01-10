@@ -7,12 +7,12 @@ using System.Threading;
 
 public static class StringExtensions
 {
-        public static string GetSlice(this string str, char separator, int segment)
-        {
-            if (string.IsNullOrEmpty(str)) return "";
-            string[] parts = str.Split(separator);
-            return segment >= 0 && segment < parts.Length ? parts[segment] : "";
-        }
+    public static string GetSlice(this string str, char separator, int segment)
+    {
+        if (string.IsNullOrEmpty(str)) return "";
+        string[] parts = str.Split(separator);
+        return segment >= 0 && segment < parts.Length ? parts[segment] : "";
+    }
 }
 
 [Tool]
@@ -27,6 +27,7 @@ public partial class TextTyper : RichTextLabel
     private float TimeAccumulator = 0f;
     private float WaitAccumulator = 0f;
     private bool IsTyping = true;
+    private bool IsSkipping = false;
     private bool Paused = false;
     private bool Skipped = false;
 
@@ -62,23 +63,38 @@ public partial class TextTyper : RichTextLabel
         {
             WaitAccumulator -= (float)delta;
         }
-        
+
         else
         {
             TypingStart?.Invoke();
 
-            if (Input.IsActionJustPressed("shift") && !Skipped)
+            if (Input.IsActionJustPressed("shift") && !Skipped && !Paused)
             {
-                while (ProgressIndex < TyperText.Length)
-                    PrintText();
+                int pauseIndex = TyperText.IndexOf("pause", ProgressIndex);
+                if (pauseIndex >= 0)
+                {
+                    while (ProgressIndex < pauseIndex)
+                    {
+                        PrintText();
+                    }
+                }
+                else
+                {
+                    while (ProgressIndex < TyperText.Length)
+                    {
+                        PrintText();
+                    }
+                }
                 Skipped = true;
             }
-            else if (Input.IsActionJustReleased("shift"))
+
+            else if (Input.IsActionJustReleased("shift") && !Paused)
             {
                 Skipped = false;
             }
 
             TimeAccumulator += (float)delta;
+
             while (TimeAccumulator >= TypingSpeed && ProgressIndex < TyperText.Length)
             {
                 TimeAccumulator -= TypingSpeed;
@@ -133,6 +149,7 @@ public partial class TextTyper : RichTextLabel
 
     public bool HandleBBCode(string keyword, string values)
     {
+
         switch (keyword)
         {
             case "wait":
