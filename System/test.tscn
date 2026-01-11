@@ -25,20 +25,8 @@ grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_nxyh8")
 theme_override_font_sizes/normal_font_size = 27
 script = ExtResource("4_4nl3m")
-TyperText = "[canskip=false]重写了一下打字机
-现在本up正在使用godot c#
-所以这个是用c#做的
-让我们看一下功能   [clear]首先就是肯定要有的bbcode的支持了
-[color=#ffff00]字体颜色[/color]，[shake]字体特效[/shake]，[font_size=16]字体大小[/font_size]，[font=res://Fonts/SANS-Spacing/SANS-Owdialog.tres]字体切换[/font]
-等等等等....[wait=5][clear]然后就是打字机的标签了
-[speed=1]慢速...... [speed=0.01]快............[/speed][clear]稍安勿燥[wait=4]
-暂停功能（按enter键继续）[pause]
-OK啊 [wait=2]哦还有个canskip功能，这可以调整是否能跳过（按shift或x键）
-来个测试[clear][canskip=true]
-aaaaaaaaa
-aaaaaaaaa
-aaaaaaaaa
-aaaaaaaaa[pause][canskip=false][clear]
-好吧，这就是所有内容了"
+TyperText = "[canskip=false]添加了个打字音效功能
+[voice=typer_monster]AAAAAAAAAAAAAAAAAAAAA[voice]
+就这样"
 DefaultSpeed = 0.1
 metadata/_custom_type_script = "uid://c2dyaw4af2lij"

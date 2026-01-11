@@ -7,6 +7,7 @@ public partial class LogoScript : MenuState
 
 	public override void Enter()
 	{
+		AudioManager.enter.PlaySfx(ResourceLoader.Load<AudioStream>("res://Audio/Sounds/other/logo.ogg"));
 		_animation = GetNode<AnimationPlayer>("Animation");
 		_animation.Play("tips");
 	}

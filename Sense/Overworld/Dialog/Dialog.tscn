@@ -1,16 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0m1rg6gu0yj"]
+[gd_scene load_steps=6 format=3 uid="uid://b0m1rg6gu0yj"]
 
 [ext_resource type="Script" uid="uid://bdbmn55lpwcw2" path="res://Sense/Overworld/Dialog/Dialog.cs" id="1_xqwy6"]
+[ext_resource type="Texture2D" uid="uid://sug51t5rwdb0" path="res://Sprites/Overworld/UI/Panel_light.png" id="2_gvewy"]
 [ext_resource type="Texture2D" uid="uid://cy4q88ewrqikt" path="res://UI/BottomTextArea.jpg" id="2_r737j"]
+[ext_resource type="FontVariation" uid="uid://ctblywm7558o3" path="res://Fonts/DTM-Spacing/DTM-Normal.tres" id="4_3u7sy"]
+[ext_resource type="Script" uid="uid://c2dyaw4af2lij" path="res://System/Global/TextTyper.cs" id="5_2wfn1"]
 
 [node name="Dialog" type="CanvasLayer"]
 script = ExtResource("1_xqwy6")
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 480.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 312.0
+offset_right = 618.0
+offset_bottom = 480.0
+texture = ExtResource("2_gvewy")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="TextTyper" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 338.0
+offset_right = 589.0
+offset_bottom = 455.0
+theme_override_fonts/normal_font = ExtResource("4_3u7sy")
+theme_override_font_sizes/normal_font_size = 27
+script = ExtResource("5_2wfn1")
+metadata/_custom_type_script = "uid://c2dyaw4af2lij"
+
 [node name="BottomTextArea" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.2509804)
 position = Vector2(320, 240)
 texture = ExtResource("2_r737j")
-
-[node name="Panel" type="Panel" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0

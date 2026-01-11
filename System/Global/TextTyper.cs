@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 
@@ -19,7 +20,7 @@ public static class StringExtensions
 public partial class TextTyper : RichTextLabel
 {
 
-	[Export(PropertyHint.MultilineText)] public string TyperText= "";
+	public string TyperText= "";
 	[Export] public float DefaultSpeed = 0.075f;
 	public float TypingSpeed = 0f; // Seconds per character
 
@@ -33,21 +34,40 @@ public partial class TextTyper : RichTextLabel
 	private bool Paused = false;
 	private bool CanSkip = true;
 
+	private string Voice = "typer_normal";
+
 	public event Action TypingStart;
 	public event Action TypingFinished;
-	public event Action Destory;
+	public event Action CheckedEnd;
 
 	public override void _Ready()
 	{
 		base._Ready();
 		TypingSpeed = DefaultSpeed;
 		BbcodeEnabled = true;
+
+		SettingSound();
 	}
 
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
 		TypingProcess(delta);
+	}
+
+	private void SettingSound()
+	{
+		AudioManager.enter.PreloadSound("typer_normal","res://Audio/Sounds/typer/normal.wav");
+		AudioManager.enter.PreloadSound("typer_monster","res://Audio/Sounds/typer/monster.wav");
+	}
+
+	public void StartTyping(string text)
+	{
+		
+		RetrunDefault();
+		TyperText = text;
+		TypingStart?.Invoke();
+		
 	}
 
 	private void TypingProcess(double delta)
@@ -69,8 +89,6 @@ public partial class TextTyper : RichTextLabel
 
 		else
 		{
-			TypingStart?.Invoke();
-
 			if (Input.IsActionJustPressed("shift") && !Paused && CanSkip)
 			{
 				int pauseIndex = TyperText.IndexOf("[pause]", ProgressIndex);
@@ -103,6 +121,7 @@ public partial class TextTyper : RichTextLabel
 			{
 				TimeAccumulator -= TypingSpeed;
 				PrintText();
+				//AudioManager.enter.PlaySfxPreloaded(Voice);
 				GD.Print("Typing: " + ProgressIndex.ToString() + "/" + TyperText.Length.ToString());
 			}
 
@@ -117,9 +136,9 @@ public partial class TextTyper : RichTextLabel
 
 	private void PrintText()
 	{
-		string text_char = TyperText[ProgressIndex].ToString();
+		char currentChar = TyperText[ProgressIndex];
 
-		if (text_char == "[")
+		if (currentChar == '[')
 		{
 			int tag_end = TyperText.IndexOf("]", ProgressIndex);
 			if (tag_end != -1)
@@ -138,22 +157,38 @@ public partial class TextTyper : RichTextLabel
 					ProgressIndex = tag_end + 1;
 				}
 			}
-			else
+		}
+
+		else if (currentChar == ' ')
+		{
+			int spaceStart = ProgressIndex;
+			while (ProgressIndex < TyperText.Length && TyperText[ProgressIndex] == ' ')
 			{
-				Text += text_char;
 				ProgressIndex++;
 			}
+			Text += TyperText.Substring(spaceStart, ProgressIndex - spaceStart);
 		}
+
+		else if (currentChar == '*')
+		{
+			int spaceStart = ProgressIndex;
+			while (ProgressIndex < TyperText.Length && TyperText[ProgressIndex] == '*')
+			{
+				ProgressIndex++;
+			}
+			Text += TyperText.Substring(spaceStart, ProgressIndex - spaceStart);
+		}
+
 		else
 		{
-			Text += text_char;
+			Text += currentChar;
 			ProgressIndex++;
+			AudioManager.enter.PlaySfxPreloaded(Voice);
 		}
 	}
 
 	public bool HandleBBCode(string keyword, string values)
 	{
-
 		switch (keyword)
 		{
 			case "wait":
@@ -180,6 +215,18 @@ public partial class TextTyper : RichTextLabel
 				}
 				break;
 			
+			case "voice":
+				if (string.IsNullOrEmpty(values) || values == "default")
+				{
+					Voice = "typer_normal";
+				}
+				else
+				{
+					Voice = values;
+				}
+				GD.Print("Now voice is:", Voice);
+				return true;
+
 			case "/speed":
 				TypingSpeed = DefaultSpeed;
 				return true;
@@ -193,17 +240,24 @@ public partial class TextTyper : RichTextLabel
 				return true;
 			
 			case "end":
-				ProgressIndex = TyperText.Length;
-				return true;
-			
-			case "destroy":
-				Destory?.Invoke();
-				GD.Print("Is Destroyed");
+				CheckedEnd?.Invoke();
 				return true;
 			
 			default:
 				break;
 		}
 		return false;
+	}
+
+	private void RetrunDefault()
+	{
+		TypingSpeed = DefaultSpeed;
+		CanSkip = true;
+		Voice = "typer_normal";
+		Text = "";
+		ProgressIndex = 0;
+		TimeAccumulator = 0.0f;
+		WaitAccumulator = 0.0f;
+		Paused = false;
 	}
 }
