@@ -177,6 +177,3 @@ shape = SubResource("CircleShape2D_8dve1")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(0, 15)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
