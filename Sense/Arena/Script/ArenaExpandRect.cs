@@ -25,10 +25,10 @@ public partial class ArenaExpandRect : ArenaExpand
 		//GD.Print(GetRecentPointInsideArena(GlobalPosition));
 	}
 
-	public override void IsInsideArena(Vector2 position, out bool isInside)
+	public override bool IsInsideArena(Vector2 position)
 	{
 		Rect2 ContentRect = new Rect2(-Size / 2, Size);
-		isInside = ContentRect.HasPoint(position);
+		return ContentRect.HasPoint(position);
 	}
 
 	public override Vector2 GetRecentPointInsideArena(Vector2 position)

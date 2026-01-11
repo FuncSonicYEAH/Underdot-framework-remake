@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwj5r7li1jmkw"]
+
+[ext_resource type="Script" uid="uid://7txw4vporqtd" path="res://Sense/Arena/Character/Heart.cs" id="1_lj2od"]
+[ext_resource type="Texture2D" uid="uid://7k7f8h11af17" path="res://ut-heart.png" id="2_4oqtk"]
+
+[node name="Character" type="CharacterBody2D"]
+script = ExtResource("1_lj2od")
+
+[node name="UtHeart" type="Sprite2D" parent="."]
+texture = ExtResource("2_4oqtk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-6, -8, -6, -7, -7, -7, -7, -6, -8, -6, -8, 2, -6, 2, -6, 4, -4, 4, -4, 6, -2, 6, -2, 8, 2, 8, 2, 6, 4, 6, 4, 4, 6, 4, 6, 2, 8, 2, 8, -6, 7, -6, 7, -7, 6, -7, 6, -8, 4, -8, 4, -7, 2, -7, 2, -6, 1, -6, 1, -4, -1, -4, -1, -6, -2, -6, -2, -7, -4, -7, -4, -8)

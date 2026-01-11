@@ -1,8 +1,96 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqhfvcbxqsond"]
+[gd_scene load_steps=8 format=3 uid="uid://dqhfvcbxqsond"]
 
 [ext_resource type="Script" uid="uid://dg52mqeyw5yyh" path="res://Sense/Arena/Script/ArenaGroup.cs" id="1_345hd"]
 [ext_resource type="Script" uid="uid://ddv6n3mri61nj" path="res://Sense/Arena/Script/ArenaExpandRect.cs" id="2_782ge"]
-[ext_resource type="Script" uid="uid://bhk66jc4m4xgv" path="res://Sense/Arena/Script/ArenaCoverRect.cs" id="3_ms7oc"]
+[ext_resource type="PackedScene" uid="uid://bwj5r7li1jmkw" path="res://Sense/Arena/Character/Heart.tscn" id="3_ms7oc"]
+[ext_resource type="Script" uid="uid://ckjjelgwog8qi" path="res://Sense/Arena/ArenaAnimation.cs" id="4_345hd"]
+
+[sub_resource type="Animation" id="Animation_782ge"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ArenaGroup/ArenaExpandRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ArenaGroup/ArenaExpandRect2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(112, 313)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ArenaGroup/ArenaExpandRect3:Size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(200, 100)]
+}
+
+[sub_resource type="Animation" id="Animation_5issf"]
+resource_name = "test"
+length = 4.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ArenaGroup/ArenaExpandRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5707963267948966, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ArenaGroup/ArenaExpandRect2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(112, 313), Vector2(362, 313), Vector2(112, 313)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ArenaGroup/ArenaExpandRect3:Size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(200, 100), Vector2(200, 180), Vector2(200, 100)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1uega"]
+_data = {
+&"RESET": SubResource("Animation_782ge"),
+&"test": SubResource("Animation_5issf")
+}
 
 [node name="ArenaTest" type="Node2D"]
 
@@ -11,16 +99,28 @@ script = ExtResource("1_345hd")
 metadata/_custom_type_script = "uid://dg52mqeyw5yyh"
 
 [node name="ArenaExpandRect" type="Node2D" parent="ArenaGroup"]
-position = Vector2(574, 188)
+position = Vector2(182, 229)
 script = ExtResource("2_782ge")
+Size = Vector2(150, 100)
 metadata/_custom_type_script = "uid://ddv6n3mri61nj"
 
 [node name="ArenaExpandRect2" type="Node2D" parent="ArenaGroup"]
-position = Vector2(432, 342)
+position = Vector2(112, 313)
 script = ExtResource("2_782ge")
 metadata/_custom_type_script = "uid://ddv6n3mri61nj"
 
-[node name="ArenaCoverRect" type="Node2D" parent="ArenaGroup"]
-position = Vector2(114, 220)
-script = ExtResource("3_ms7oc")
-metadata/_custom_type_script = "uid://bhk66jc4m4xgv"
+[node name="ArenaExpandRect3" type="Node2D" parent="ArenaGroup"]
+position = Vector2(230, 377)
+script = ExtResource("2_782ge")
+Size = Vector2(200, 100)
+metadata/_custom_type_script = "uid://ddv6n3mri61nj"
+
+[node name="Character" parent="." node_paths=PackedStringArray("ArenaNode") instance=ExtResource("3_ms7oc")]
+position = Vector2(112, 147)
+ArenaNode = NodePath("../ArenaGroup")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1uega")
+}
+script = ExtResource("4_345hd")
