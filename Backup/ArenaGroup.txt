@@ -103,16 +103,13 @@ public partial class ArenaGroup : Node2D
 			if (Child is not ArenaExpand arena)
 				continue;
 			
-			if (arena.Visible)
+			foreach (Rid item in CanvasItems)
 			{
-				foreach (Rid item in CanvasItems)
-				{
-					RenderingServer.CanvasItemSetTransform(item, arena.GetTransform());
-
-				}
-
-				Child.Callv("DrawArena", CanvasItems);
+				RenderingServer.CanvasItemSetTransform(item, arena.GetGlobalTransform().AffineInverse());
+				
 			}
+
+			Child.Callv("DrawArena", CanvasItems);
 			
 		}
 
