@@ -5,7 +5,12 @@ using System;
 [GlobalClass]
 public partial class ArenaExpandRect : ArenaExpand
 {
-	[Export] Vector2 Size = new Vector2(600, 400);
+	[Export] Vector2 Size = new Vector2(100, 100);
+
+	public override void _Process(double delta)
+	{
+		base._Process(delta);
+	}
 
 	public override void DrawArena(Rid border_render_item, Rid border_culling_item, Rid mask_render_item, Rid mask_culling_item)
 	{
@@ -15,6 +20,8 @@ public partial class ArenaExpandRect : ArenaExpand
 
 		Rect2 ContentRect = new Rect2(-Size / 2, Size);
 		RenderingServer.CanvasItemAddRect(mask_render_item, ContentRect, BackgroundColor);
+
+		//GD.Print(GetRecentPointInsideArena(GlobalPosition));
 	}
 
 	public override void IsInsideArena(Vector2 position, out bool isInside)

@@ -8,19 +8,19 @@ using System.Linq;
 [GlobalClass]
 public partial class ArenaGroup : Node2D
 {
-	Rid BorderViewport;
-	Rid MaskViewport;
+	public Rid BorderViewport;
+	public Rid MaskViewport;
 
-	Rid BorderCanvas;
-	Rid MaskCanvas;
+	public Rid BorderCanvas;
+	public Rid MaskCanvas;
 
-	Rid BroderRenderItem;
-	Rid BorderCullingItem;
-	Rid MaskRenderItem;
-	Rid MaskCullingItem;
+	public Rid BroderRenderItem;
+	public Rid BorderCullingItem;
+	public Rid MaskRenderItem;
+	public Rid MaskCullingItem;
 
-	Rid BorderViewportTexture;
-	Rid MaskViewportTexture;
+	public Rid BorderViewportTexture;
+	public Rid MaskViewportTexture;
 
 	public override void _Ready()
 	{
@@ -85,6 +85,7 @@ public partial class ArenaGroup : Node2D
 
 		RenderingServer.ViewportSetSize(BorderViewport, (int)GetViewportRect().Size.X, (int)GetViewportRect().Size.Y);
 		RenderingServer.ViewportSetSize(MaskViewport, (int)GetViewportRect().Size.X, (int)GetViewportRect().Size.Y);
+		//GD.Print((int)GetViewportRect().Size.X, "," ,(int)GetViewportRect().Size.Y);
 		DrawArenas();
 	}
 
@@ -101,16 +102,14 @@ public partial class ArenaGroup : Node2D
 		{
 			if (Child is not ArenaExpand arena)
 				continue;
-
-			if (!arena.Visible)
+			
+			foreach (Rid item in CanvasItems)
 			{
-				foreach (Rid item in CanvasItems)
-				{
-					RenderingServer.CanvasItemSetTransform(item, arena.GetGlobalTransform().AffineInverse());
-				}
-
-				Child.Callv("DrawArena", CanvasItems);
+				RenderingServer.CanvasItemSetTransform(item, arena.GetGlobalTransform().AffineInverse());
 			}
+
+			Child.Callv("DrawArena", CanvasItems);
+			
 		}
 
 		Rid CanvasItem = GetCanvasItem();
