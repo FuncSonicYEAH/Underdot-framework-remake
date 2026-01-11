@@ -11,7 +11,8 @@ public partial class ArenaGroup : Node2D
 	private Material CullingMateral;
 
 	public Rid PhysicsBody;
-	private List<Rid> PhysicsShapes = new();
+
+	private StaticBody2D _collisionBoundary;
 
 	public Rid BorderViewport;
 	public Rid MaskViewport;
@@ -64,6 +65,11 @@ public partial class ArenaGroup : Node2D
 
 		RenderingServer.CanvasItemSetMaterial(BorderCullingItem, CullingMateral.GetRid());
 		RenderingServer.CanvasItemSetMaterial(MaskCullingItem, CullingMateral.GetRid());
+
+		_collisionBoundary = new StaticBody2D();
+		_collisionBoundary.Name = "ArenaCollisionBoundary";
+		_collisionBoundary.CollisionLayer = 0;
+		AddChild(_collisionBoundary);
 	}
 
 	public override void _Notification(int what)
@@ -125,17 +131,5 @@ public partial class ArenaGroup : Node2D
 		RenderingServer.CanvasItemClear(CanvasItem);
 		RenderingServer.CanvasItemAddTextureRect(CanvasItem, GetViewportRect(), BorderViewportTexture );
 		RenderingServer.CanvasItemAddTextureRect(CanvasItem, GetViewportRect(), MaskViewportTexture );
-	}
-
-	public bool IsPointInArena(Vector2 Pos)
-	{
-		foreach (ArenaExpand Child in GetChildren())
-		{
-			Vector2 LocalPoint = Child.GlobalTransform.AffineInverse() * Pos;
-			bool InsideChild = Child.IsInsideArena(LocalPoint);
-			
-			if (InsideChild) return true;
-		}
-		return false;
 	}
 }

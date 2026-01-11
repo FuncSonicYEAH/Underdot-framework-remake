@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 [GlobalClass]
 public partial class ArenaExpand : Arena
@@ -11,6 +12,7 @@ public partial class ArenaExpand : Arena
 	{
 		return false;
 	}
+	
 	public virtual Vector2 GetRecentPointInsideArena(Vector2 position)
 	{
 		return position;

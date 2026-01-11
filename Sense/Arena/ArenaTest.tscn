@@ -116,7 +116,7 @@ Size = Vector2(200, 100)
 metadata/_custom_type_script = "uid://ddv6n3mri61nj"
 
 [node name="Character" parent="." node_paths=PackedStringArray("ArenaNode") instance=ExtResource("3_ms7oc")]
-position = Vector2(112, 147)
+position = Vector2(139, 240)
 ArenaNode = NodePath("../ArenaGroup")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
