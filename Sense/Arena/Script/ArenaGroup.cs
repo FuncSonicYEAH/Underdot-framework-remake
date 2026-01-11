@@ -8,13 +8,15 @@ using System.Linq;
 [GlobalClass]
 public partial class ArenaGroup : Node2D
 {
+	private Material CullingMateral;
+
 	public Rid BorderViewport;
 	public Rid MaskViewport;
 
 	public Rid BorderCanvas;
 	public Rid MaskCanvas;
 
-	public Rid BroderRenderItem;
+	public Rid BorderRenderItem;
 	public Rid BorderCullingItem;
 	public Rid MaskRenderItem;
 	public Rid MaskCullingItem;
@@ -28,6 +30,8 @@ public partial class ArenaGroup : Node2D
 
 		BorderCanvas = RenderingServer.CanvasCreate();
 		MaskCanvas = RenderingServer.CanvasCreate();
+
+		CullingMateral = ResourceLoader.Load<Material>("res://Sense/Arena/tran_material.tres");
 
 		BorderViewport = RenderingServer.ViewportCreate();
 		RenderingServer.ViewportSetActive(BorderViewport, true);
@@ -46,14 +50,17 @@ public partial class ArenaGroup : Node2D
 		BorderViewportTexture = RenderingServer.ViewportGetTexture(BorderViewport);
 		MaskViewportTexture = RenderingServer.ViewportGetTexture(MaskViewport);
 
-		BroderRenderItem = RenderingServer.CanvasItemCreate();
-		RenderingServer.CanvasItemSetParent(BroderRenderItem, BorderCanvas);
+		BorderRenderItem = RenderingServer.CanvasItemCreate();
+		RenderingServer.CanvasItemSetParent(BorderRenderItem, BorderCanvas);
 		BorderCullingItem = RenderingServer.CanvasItemCreate();
 		RenderingServer.CanvasItemSetParent(BorderCullingItem, BorderCanvas);
 		MaskRenderItem = RenderingServer.CanvasItemCreate();
 		RenderingServer.CanvasItemSetParent(MaskRenderItem, MaskCanvas);
 		MaskCullingItem = RenderingServer.CanvasItemCreate();
 		RenderingServer.CanvasItemSetParent(MaskCullingItem, MaskCanvas);
+
+		RenderingServer.CanvasItemSetMaterial(BorderCullingItem, CullingMateral.GetRid());
+		RenderingServer.CanvasItemSetMaterial(MaskCullingItem, CullingMateral.GetRid());
 	}
 
 	public override void _Notification(int what)
@@ -61,7 +68,7 @@ public partial class ArenaGroup : Node2D
 		base._Notification(what);
 		if (what == NotificationPredelete)
 		{
-			RenderingServer.FreeRid(BroderRenderItem);
+			RenderingServer.FreeRid(BorderRenderItem);
 			RenderingServer.FreeRid(BorderCullingItem);
 			RenderingServer.FreeRid(MaskRenderItem);
 			RenderingServer.FreeRid(MaskCullingItem);
@@ -91,7 +98,7 @@ public partial class ArenaGroup : Node2D
 
 	public void DrawArenas()
 	{
-		Godot.Collections.Array CanvasItems = new Godot.Collections.Array() { BroderRenderItem, BorderCullingItem, MaskRenderItem, MaskCullingItem };
+		List<Rid> CanvasItems = [ BorderRenderItem, BorderCullingItem, MaskRenderItem, MaskCullingItem ];
 		
 		foreach (Rid item in CanvasItems)
 		{
@@ -100,20 +107,15 @@ public partial class ArenaGroup : Node2D
 
 		foreach (Node Child in GetChildren())
 		{
-			if (Child is not ArenaExpand arena)
-				continue;
-			
-			if (arena.Visible)
+			Arena ArenaChild = Child as Arena;
+			if (ArenaChild == null || !ArenaChild.Visible) continue;
+
+			foreach (Rid item in CanvasItems)
 			{
-				foreach (Rid item in CanvasItems)
-				{
-					RenderingServer.CanvasItemSetTransform(item, arena.GetTransform());
-
-				}
-
-				Child.Callv("DrawArena", CanvasItems);
+				RenderingServer.CanvasItemAddSetTransform(item, ArenaChild.GetTransform());
 			}
-			
+
+			ArenaChild.DrawArena(CanvasItems[0],CanvasItems[1],CanvasItems[2],CanvasItems[3]);
 		}
 
 		Rid CanvasItem = GetCanvasItem();

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
-public partial class ArenaCover : Node
+[GlobalClass]
+public abstract partial class ArenaCover : Arena
 {
 }

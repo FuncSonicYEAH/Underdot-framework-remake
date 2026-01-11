@@ -1,28 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqhfvcbxqsond"]
+[gd_scene load_steps=4 format=3 uid="uid://dqhfvcbxqsond"]
 
 [ext_resource type="Script" uid="uid://dg52mqeyw5yyh" path="res://Sense/Arena/Script/ArenaGroup.cs" id="1_345hd"]
 [ext_resource type="Script" uid="uid://ddv6n3mri61nj" path="res://Sense/Arena/Script/ArenaExpandRect.cs" id="2_782ge"]
-[ext_resource type="Script" uid="uid://b4h3esujipyf0" path="res://Sense/Arena/Script/ArenaGroupMask.cs" id="3_5issf"]
-[ext_resource type="Texture2D" uid="uid://cano78ifrfwqe" path="res://icon.svg" id="4_1uega"]
+[ext_resource type="Script" uid="uid://bhk66jc4m4xgv" path="res://Sense/Arena/Script/ArenaCoverRect.cs" id="3_ms7oc"]
 
 [node name="ArenaTest" type="Node2D"]
 
 [node name="ArenaGroup" type="Node2D" parent="."]
-clip_children = 2
 script = ExtResource("1_345hd")
 metadata/_custom_type_script = "uid://dg52mqeyw5yyh"
 
 [node name="ArenaExpandRect" type="Node2D" parent="ArenaGroup"]
-position = Vector2(-147, -178)
+position = Vector2(574, 188)
 script = ExtResource("2_782ge")
 metadata/_custom_type_script = "uid://ddv6n3mri61nj"
 
-[node name="ArenaGroupMask" type="Node2D" parent="." node_paths=PackedStringArray("_arenaGroup")]
-clip_children = 1
-script = ExtResource("3_5issf")
-_arenaGroup = NodePath("../ArenaGroup")
-metadata/_custom_type_script = "uid://b4h3esujipyf0"
+[node name="ArenaExpandRect2" type="Node2D" parent="ArenaGroup"]
+position = Vector2(432, 342)
+script = ExtResource("2_782ge")
+metadata/_custom_type_script = "uid://ddv6n3mri61nj"
 
-[node name="Icon" type="Sprite2D" parent="ArenaGroupMask"]
-position = Vector2(176, 200)
-texture = ExtResource("4_1uega")
+[node name="ArenaCoverRect" type="Node2D" parent="ArenaGroup"]
+position = Vector2(114, 220)
+script = ExtResource("3_ms7oc")
+metadata/_custom_type_script = "uid://bhk66jc4m4xgv"

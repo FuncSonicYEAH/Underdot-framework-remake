@@ -21,6 +21,7 @@ public partial class ArenaExpandRect : ArenaExpand
 		Rect2 ContentRect = new Rect2(-Size / 2, Size);
 		RenderingServer.CanvasItemAddRect(mask_render_item, ContentRect, BackgroundColor);
 
+		//GD.Print("Draw");
 		//GD.Print(GetRecentPointInsideArena(GlobalPosition));
 	}
 

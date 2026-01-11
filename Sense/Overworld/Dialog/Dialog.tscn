@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0m1rg6gu0yj"]
+
+[ext_resource type="Script" uid="uid://bdbmn55lpwcw2" path="res://Sense/Overworld/Dialog/Dialog.cs" id="1_xqwy6"]
+[ext_resource type="Texture2D" uid="uid://cy4q88ewrqikt" path="res://UI/BottomTextArea.jpg" id="2_r737j"]
+
+[node name="Dialog" type="CanvasLayer"]
+script = ExtResource("1_xqwy6")
+
+[node name="BottomTextArea" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.2509804)
+position = Vector2(320, 240)
+texture = ExtResource("2_r737j")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
