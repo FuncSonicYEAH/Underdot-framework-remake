@@ -1,10 +1,13 @@
 using Godot;
 using System;
+using System.Threading;
 
 public partial class Dialog : CanvasLayer
 {
 	TextTyper Typer;
 	Control DialogContainer;
+
+	public bool Started = false;
 
 	public override void _Ready()
 	{
@@ -26,11 +29,13 @@ public partial class Dialog : CanvasLayer
 
 	private void OnEnd()
 	{
+		Started = false;
 		DialogContainer.Hide();
 	}
 
 	public void DialogStart(string text)
 	{
+		Started = true;
 		Typer.StartTyping(text);
 	}
 }
