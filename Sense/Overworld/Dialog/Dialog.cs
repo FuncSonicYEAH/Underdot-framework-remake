@@ -45,10 +45,10 @@ public partial class Dialog : CanvasLayer
 	}
 
 	private static Task ToSignal(GodotObject source, string signal)
-    {
-        var tcs = new TaskCompletionSource<bool>();
-        Callable callable = Callable.From(() => tcs.SetResult(true));
-        source.Connect(signal, callable);
-        return tcs.Task;
-    }
+	{
+		var tcs = new TaskCompletionSource<bool>();
+		Callable callable = Callable.From(() => tcs.SetResult(true));
+		source.Connect(signal, callable);
+		return tcs.Task;
+	}
 }
